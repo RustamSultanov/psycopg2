@@ -66,9 +66,9 @@ create () {
         set_param wal_level hot_standby
     fi
 
+    echo "host $DBNAME travis 0.0.0.0/0 trust" >> "$DATADIR/pg_hba.conf"
     if (( "$VERNUM" >= 900 )); then
         echo "host replication travis 0.0.0.0/0 trust" >> "$DATADIR/pg_hba.conf"
-        echo "host $DBNAME travis 0.0.0.0/0 trust" >> "$DATADIR/pg_hba.conf"
     fi
 
     # start the server, wait for start
